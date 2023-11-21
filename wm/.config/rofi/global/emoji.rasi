@@ -40,7 +40,7 @@ textbox {
 listview {
 	cycle: false;
 	scrollbar: false;
-	columns: 9;
+	columns: 1;
 	cycle: false;
 	dynamic: false;
 	layout: vertical;
@@ -49,16 +49,17 @@ listview {
 
 element {
 	border-radius: 3px;
-	padding: 14px 0px 14px 0px;
+	padding: 7px 0px 7px 0px;
 }
 
 element-text {
-	font: "Noto Color Emoji 27";
+	font: "Noto Color Emoji 20";
 	expand: false;
-	text-color: #333333;
+	background-color: rgba(0,0,0,0%);
+	text-color: #FFFFFF;
 	horizontal-align: 1;
 	vertical-align: 0.5;
-	margin: 0px 0px 0px 13px;
+	margin: 0px 0px 0px 14px;
 	width: 1px;
 	padding: 1px 0px 16px;
 }
