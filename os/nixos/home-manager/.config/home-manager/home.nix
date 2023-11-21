@@ -17,23 +17,23 @@
   };
   nixpkgs.config.allowUnfree = true;
   home.packages = [
-  pkgs.vivaldi
-  pkgs.firefox
-  pkgs.remmina
-  pkgs.gimp
-  pkgs.webcord
-  pkgs.asciiquarium
-  pkgs.chromium
-  pkgs.logseq
-  pkgs.obs-studio
-  (pkgs.discord.override {
-  # remove any overrides that you don't want
-  withOpenASAR = true;
-  withVencord = true;
-})
-  pkgs.wdisplays
-  pkgs.wpgtk
-  pkgs.youtube-music
+    pkgs.vivaldi
+    pkgs.firefox
+    pkgs.remmina
+    pkgs.gimp
+    pkgs.webcord
+    pkgs.asciiquarium
+    pkgs.chromium
+    pkgs.logseq
+    pkgs.obs-studio
+    pkgs.steam
+    (pkgs.discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
+    pkgs.wdisplays
+    pkgs.wpgtk
+    pkgs.youtube-music 
   ];
   programs = {
     home-manager = {

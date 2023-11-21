@@ -19,12 +19,8 @@
     wl-clipboard grim slurp
     jq libnotify hyprpicker
     gpick pamixer
-    #xdg-desktop-portal
     xdg-desktop-portal-hyprland swww
-#    xdg-desktop-portal-gtk
     gnome.adwaita-icon-theme
-    #steam
-    #libgdiplus
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
