@@ -7,7 +7,7 @@
     wget neovim ranger
     busybox git
     wezterm nodejs
-    foot
+    foot zbar
     stow
     networkmanager pipewire wireplumber
     pavucontrol
