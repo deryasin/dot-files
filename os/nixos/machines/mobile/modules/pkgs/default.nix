@@ -1,1 +1,0 @@
-../../../default/modules/pkgs/default.nix
