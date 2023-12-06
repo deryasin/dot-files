@@ -5,14 +5,6 @@
 { config, pkgs, ... }:
 
 {
- boot.loader.grub = {
-    enable = true;
-    useOSProber = true;
-    device = "nodev";
-    efiSupport = true;
-    #efiInstallAsRemovable = false; 
-  };
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
