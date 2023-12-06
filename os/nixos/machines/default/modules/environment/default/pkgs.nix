@@ -20,7 +20,7 @@
     jq libnotify hyprpicker
     gpick pamixer
     xdg-desktop-portal-hyprland swww
-    gnome.adwaita-icon-theme
+    gnome.adwaita-icon-theme eww-wayland
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
