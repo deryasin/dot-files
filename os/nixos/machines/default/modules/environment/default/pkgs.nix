@@ -8,7 +8,7 @@
     busybox git
     wezterm nodejs
     foot zbar
-    stow
+    stow home-manager
     networkmanager pipewire wireplumber
     pavucontrol
     neovim ripgrep
