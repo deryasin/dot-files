@@ -8,6 +8,8 @@ if [[ "$(hostname)" == "home" ]]; then
     ZSH_THEME="home-default"
 elif [[ "$(hostname)" == "work" ]]; then
     ZSH_THEME="work-default"
+elif [[ "$(hostname)" == "mobile" ]]; then 
+    ZSH_THEME="mobile-default"
 else
     PS1="[\u@\h \W]\$ "
 fi
