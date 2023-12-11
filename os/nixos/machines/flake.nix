@@ -34,6 +34,8 @@
        modules = [
 	 ./default/modules
          ./mobile/configuration.nix
+	 ./mobile/hardware-configuration.nix
+	 ./mobile/modules
        ];
      };
    };
