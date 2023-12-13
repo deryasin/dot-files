@@ -1,25 +1,24 @@
- { pkgs ? import <nixpkgs> {} }:
-
+{ fetchurl
+, google-chrome
+, lib
+, makeDesktopItem
+, runtimeShell
+, symlinkJoin
+, writeScriptBin
+}:
 let
-  fetchurl = pkgs.fetchurl;
-  google-chrome = pkgs.google-chrome;
-  lib = pkgs.lib;
-  makeDesktopItem = pkgs.makeDesktopItem;
-  runtimeShell = pkgs.runtimeShell;
-  symlinkJoin = pkgs.symlinkJoin;
-  writeScriptBin = pkgs.writeScriptBin;
   name = "discord-via-google-chrome";
 
   meta = {
-    description = "Open Discord1 in Google Chrome app mode";
+    description = "Open Discord in Google Chrome app mode";
     longDescription = ''
     Quick Solution to stream with discord. Webcord and the normal discord not working right with nixos, wayland and nvidia.
-    Supports Krips and screen sharing, but no "close and put to system tray"
+    Supports Krisp and screen sharing, but no "close and put to system tray"
     '';
     homepage = google-chrome.meta.homepage or null;
     license = lib.licenses.unfree;
     platforms = google-chrome.meta.platforms or lib.platforms.all;
-  };
+ };
 
   desktopItem = makeDesktopItem {
     inherit name;

@@ -2,6 +2,8 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    # custom
+   (callPackage ../../packages/default/custom/discord-via-chrome.nix { })
     #buildtools
     gcc gnumake appimage-run
     wget neovim ranger
