@@ -17,6 +17,7 @@ let
     (file: ./. + "/${file}")
     (filter
       (file: hasSuffix ".nix" file && file != "default.nix" &&
+        ! lib.hasPrefix "packages/default/custom/" file &&
         ! lib.hasPrefix "x/taffybar/" file &&
         ! lib.hasSuffix "-hm.nix" file)
       (files dir));
