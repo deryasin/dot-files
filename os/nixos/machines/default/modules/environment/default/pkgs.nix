@@ -3,9 +3,9 @@
 {
   environment.systemPackages = with pkgs; [
     #buildtools
-    gcc gnumake
+    gcc gnumake appimage-run
     wget neovim ranger
-    busybox git
+    git ps
     wezterm nodejs
     foot zbar
     stow home-manager
@@ -20,7 +20,8 @@
     jq libnotify hyprpicker
     gpick pamixer
     xdg-desktop-portal-hyprland swww
-    gnome.adwaita-icon-theme
+    gnome.adwaita-icon-theme eww-wayland
+    gamescope immersed-vr
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";

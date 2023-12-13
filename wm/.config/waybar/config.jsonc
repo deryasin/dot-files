@@ -1,12 +1,15 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar at the bottom of your screen
-    "height": 24, // Waybar height
-    // "width": 1366, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/mode", "custom/ytm"],
-    "modules-center": ["hyprland/window", "custom/watt"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
+    "height": 26, // Waybar height
+    "exclusive": true, // Application cant draw over the bar
+    "passthrough": false, // Can't click through thebar
+    "gtk-layer-shell": true,
+    
+
+    "modules-left": ["cpu", "memory", "battery"],
+    "modules-center": ["hyprland/workspaces", "hyprland/window"],
+    "modules-right": ["network", "pulseaudio", "tray", "clock"],
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -23,9 +26,6 @@
             "focused": "",
             "default": ""
         }
-    },
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">{}</span>"
 	
     },
     "tray": {
@@ -88,6 +88,23 @@
         "interval": 30, // Remove this if your script is endless and write in loop
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
         "exec-if": "pgrep spotify"
+    },
+    "hyprland/window": {
+        "format": " :D {}",
+        "separate-outputs": true,
+        "window-rewrite": {
+            "class<org.wezfurlong.wezterm>": "$1 "
+	},
+	"rewrite": {
+            "class<org.wezfurlong.wezterm>": "lol",
+	    "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*)Discord": "Discord 󰙯 ",
+            "(.*)Steam": "Steam 󰓓"
+        },
+        "max-length": 35
     },
     "custom/watt": {
       "format": "{}",
