@@ -29,7 +29,7 @@ let
     icon = fetchurl {
       name = "free-discord-4054295-3352977.png";
       url = "https://cdn.iconscout.com/icon/free/png-128/free-discord-4054295-3352977.png";
-      sha256 = "sha256-XrQnlu5cIDcsqOm6/Mzvn/vu/hV+lEaXrUq8hPnCmqQ=";
+      sha256 = "sha256-S6ViVXLCeydDKlzOe7BbZ5wMBVSAl/XEJK0L2Xk2ink=";
       meta.license = lib.licenses.unfree;
     };
     desktopName = "Discord via Google Chrome";
