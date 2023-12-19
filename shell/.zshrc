@@ -25,4 +25,4 @@ if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='nvim'
  fi
 
- alias sranger="source ranger"
+ alias sranger="alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'"
