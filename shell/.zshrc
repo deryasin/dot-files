@@ -24,3 +24,5 @@ if [[ -n $SSH_CONNECTION ]]; then
  else
    export EDITOR='nvim'
  fi
+
+ alias sranger="source ranger"
