@@ -1,12 +1,7 @@
-let
-  my-python-packages = ps: with ps; [
-    pandas
-    requests
-    gi
-    # other python packages
+{ pkgs, ... }:
+{
+environment.systemPackages = with pkgs; [
+   (python3.withPackages(ps: with ps; [ pygobject3 gst-python dbus-python ]))
   ];
-in
-environment.systemPackages = [
-  (pkgs.python3.withPackages my-python-packages)
-];
+}
 
