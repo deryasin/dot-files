@@ -1,6 +1,8 @@
 # hardware.nix
 { config, ... }:
 {
+  hardware.bluetooth.enable = true; 
+  hardware.bluetooth.powerOnBoot = true; 
   boot.kernelParams = [
     # With BIOS version 1.12 and the IOMMU enabled, the amdgpu driver
     # either crashes or is not able to attach to the GPU depending on
