@@ -1,14 +1,14 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar at the bottom of your screen
-    "height": 26, // Waybar height
+    "height": 28, // Waybar height
     "exclusive": true, // Application cant draw over the bar
     "passthrough": false, // Can't click through thebar
     "gtk-layer-shell": true,
     
 
     "modules-left": ["cpu", "memory", "battery"],
-    "modules-center": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["hyprland/workspaces", "custom/l_end", "custom/musicplayer"],
     "modules-right": ["network", "pulseaudio", "tray", "clock"],
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -22,7 +22,7 @@
             "5": "", // music
             "6": "", // docs
             "urgent": "",
-            "active": "󰈈",
+            /*"active": "󰈈",*/
             "focused": "",
             "default": ""
         }
@@ -30,7 +30,7 @@
     },
     "tray": {
         // "icon-size": 21,
-        "spacing": 10
+        "spacing": 5
     },
     "clock": {
         "format-alt": "{:%Y-%m-%d}"
@@ -82,12 +82,11 @@
         },
         "on-click-right": "pavucontrol"
     },
-    "custom/spotify": {
-        "format": " {}",
-        "max-length": 40,
-        "interval": 30, // Remove this if your script is endless and write in loop
+    "custom/musicplayer": {
+        "format": "󰎆 {}",
+        "max-length": 30,
+        "interval": 1, // Remove this if your script is endless and write in loop
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
-        "exec-if": "pgrep spotify"
     },
     "hyprland/window": {
         "format": " :D {}",
@@ -110,6 +109,50 @@
       "format": "{}",
       "interval": 10,
       "exec": "$HOME/.config/waybar/scripts/watt.sh"
-    }
+    },
+
+// modules for padding //
+
+    "custom/l_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/r_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/padd": {
+        "format": "  ",
+        "interval" : "once",
+        "tooltip": false
+    }    
 }
 
