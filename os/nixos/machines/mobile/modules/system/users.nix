@@ -5,7 +5,7 @@
   users.users.yasin = {
     isNormalUser = true;
     home = "/home/yasin";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "video"];
   };
   users.defaultUserShell = pkgs.zsh;
 }
