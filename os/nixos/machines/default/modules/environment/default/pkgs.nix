@@ -25,7 +25,11 @@
     gnome.adwaita-icon-theme eww-wayland
     gamescope immersed-vr
     grimblast stdenv.cc.cc.lib python3 gtk3 gobject-introspection
-    libnotify playerctl tlp
+    libnotify playerctl tlp socat dig libGL
+       libglvnd
+   vulkan-loader
+   vulkan-headers
+   glxinfo
  ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
