@@ -17,5 +17,6 @@
 boot.extraModulePackages = [
     config.boot.kernelPackages.v4l2loopback.out
 ];
+boot.initrd.kernelModules = [ "amdgpu" ];
 }
 
