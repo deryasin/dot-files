@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
 environment.systemPackages = with pkgs; [
-   (python3.withPackages(ps: with ps; [ pygobject3 gst-python dbus-python psutil line_profiler]))
+   (python3.withPackages(ps: with ps; [ wheel pip pygobject3 gst-python dbus-python psutil line_profiler]))
   ];
 }
 

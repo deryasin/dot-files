@@ -29,7 +29,8 @@
        libglvnd
    vulkan-loader
    vulkan-headers
-   glxinfo pqiv light
+   glxinfo pqiv light openssl_legacy lxc
+   ferdium xfce.thunar nom
  ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
