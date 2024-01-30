@@ -1,0 +1,7 @@
+feeds:
+  - url: https://gbatemp.net/forums/-/index.rss
+    name: GBATemp
+  - url: https://www.heise.de/rss/heise.rdf
+    name: Heise
+  - url: https://mixed-news.com/en/feed
+    name: Mixed
