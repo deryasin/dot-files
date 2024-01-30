@@ -10,4 +10,10 @@
     wlr.enable = true;
   };
   system.stateVersion = "23.05";
+  programs.streamdeck-ui = {
+    enable = true;
+    autoStart = true; # optional
+  };
+  virtualisation.waydroid.enable = true;
+
 }
