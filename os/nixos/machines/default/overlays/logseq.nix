@@ -1,3 +1,6 @@
+{ config, pkgs, lib, ... }:
+{
+
 nixpkgs.overlays = [
   (
     final: prev: {
@@ -13,3 +16,5 @@ nixpkgs.overlays = [
     }
   )
 ];
+
+}

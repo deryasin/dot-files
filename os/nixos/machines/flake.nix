@@ -24,6 +24,7 @@
        specialArgs = { inherit system; };
        modules = [
 	 ./default/modules
+	 ./default/overlays
          ./home/configuration.nix
          ./home/hardware-configuration.nix
          ./home/modules

@@ -1,1 +1,4 @@
-services.openssh.enable = true;
+{ config, ...}:
+{
+  services.openssh.enable = true;
+}

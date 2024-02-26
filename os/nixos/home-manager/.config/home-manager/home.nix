@@ -39,7 +39,6 @@
     home-manager = {
       enable = true;
     };
-    
     neovim = {
       plugins = [
         pkgs.vimPlugins.nvim-treesitter
