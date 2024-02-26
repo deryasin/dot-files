@@ -32,7 +32,7 @@
     vulkan-loader
     vulkan-headers
     glxinfo pqiv light openssl_legacy lxc
-    ferdium xfce.thunar nom
+    ferdium xfce.thunar nom discord
     glxinfo pqiv light
     logseq
     nvidia-vaapi-driver
