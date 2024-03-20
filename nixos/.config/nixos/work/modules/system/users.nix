@@ -8,5 +8,6 @@
     extraGroups = [ "wheel" "networkmanager" "dialout" "lp" "tty" "input"];
   };
   users.defaultUserShell = pkgs.zsh;
+  #programs.home-manager.enable = true;
 }
 

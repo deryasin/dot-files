@@ -1,0 +1,5 @@
+device explicit fileserver zu kommeni
+
+cvlient kommserver, 
+
+regeln ergänzt carlokommserver device

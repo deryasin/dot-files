@@ -23,7 +23,7 @@
     xdg-desktop-portal
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland swww
-    gnome.adwaita-icon-theme eww-wayland
+    gnome.adwaita-icon-theme eww
     gamescope immersed-vr
     grimblast stdenv.cc.cc.lib python3 gtk3 gobject-introspection
     libnotify playerctl tlp socat dig libGL
