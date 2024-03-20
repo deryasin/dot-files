@@ -30,6 +30,17 @@
          ./home/modules
          ];
      };
+
+     work = nixpkgs.lib.nixosSystem {
+       specialArgs = { inherit system; };
+       modules = [
+	 ./default/modules
+	 ./default/overlays
+         ./work/configuration.nix
+         ./work/hardware-configuration.nix
+         ./work/modules
+         ];
+     };
      mobile = nixpkgs.lib.nixosSystem {
        specialArgs = { inherit system; };
        modules = [

@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     # custom
-   (callPackage ../../packages/default/custom/discord-via-chrome.nix { })
     #buildtools
     gcc gnumake appimage-run
     wget neovim ranger
@@ -37,6 +36,8 @@
     logseq
     nvidia-vaapi-driver
     vscodium sshpass ansible libusb
+    wdisplays firefox
+    atool unzip killall
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";

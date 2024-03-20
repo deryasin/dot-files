@@ -26,3 +26,4 @@ if [[ -n $SSH_CONNECTION ]]; then
  fi
 
 alias sranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias vim="nvim"
