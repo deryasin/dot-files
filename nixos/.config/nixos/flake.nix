@@ -11,7 +11,10 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
-      #overlays = [nixgl.overlay];
+      overlays = [
+      #nixgl.overlay
+      import ./default/overlays/electron.nix
+      ];
       config = {
         allowUnfree = true;
         allowInsecure = true;
