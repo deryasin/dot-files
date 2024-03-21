@@ -37,7 +37,7 @@
     nvidia-vaapi-driver
     vscodium sshpass ansible libusb
     wdisplays firefox
-    atool unzip killall
+    atool unzip killall wireguard-tools
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
