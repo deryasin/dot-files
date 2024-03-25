@@ -14,7 +14,7 @@
     pavucontrol
     neovim ripgrep
     lazygit gdu bottom
-    rofi-wayland rofi-bluetooth waybar
+    rofi-wayland-unwrapped rofi-bluetooth waybar
     swaybg swaylock-effects
     dunst xdg-utils imagemagick
     wl-clipboard grim slurp
