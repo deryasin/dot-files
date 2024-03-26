@@ -11,7 +11,7 @@ elif [[ "$(hostname)" == "work" ]]; then
 elif [[ "$(hostname)" == "mobile" ]]; then 
     ZSH_THEME="mobile-default"
 else
-    PS1="[\u@\h \W]\$ "
+    ZSH_THEME="home-default"
 fi
 
 PS1='%n@%m %~ %# '
