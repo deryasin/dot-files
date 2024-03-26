@@ -4,7 +4,8 @@
   imports =
     [
       ./hardware-configuration.nix
-      <home-manager/nixos>
+        "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/t14/amd"
+#      <home-manager/nixos>
     ];
   xdg.portal = {
     enable = true;

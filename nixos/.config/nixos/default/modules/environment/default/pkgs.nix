@@ -1,30 +1,33 @@
 # environment/default.nix
 { pkgs, ... }:
-{
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
   environment.systemPackages = with pkgs; [
     # custom
     #buildtools
     gcc gnumake appimage-run
     wget neovim ranger
     git ps
-    wezterm nodejs
+    unstable.wezterm nodejs
+    neofetch
     foot zbar
     stow home-manager
     networkmanager pipewire wireplumber
     pavucontrol
     neovim ripgrep
     lazygit gdu bottom
-    rofi-wayland-unwrapped rofi-bluetooth waybar
+    unstable.rofi-wayland-unwrapped rofi-bluetooth waybar
     swaybg swaylock-effects
     dunst xdg-utils imagemagick
     wl-clipboard grim slurp
     jq libnotify hyprpicker
-    gpick pamixer
+    gpick pamixer openvpn
     xdg-desktop-portal
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland swww
     gnome.adwaita-icon-theme eww
-    gamescope immersed-vr
+    gamescope
     grimblast stdenv.cc.cc.lib python3 gtk3 gobject-introspection
     libnotify playerctl tlp socat dig libGL
     libglvnd
