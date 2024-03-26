@@ -41,6 +41,8 @@ in {
     vscodium sshpass ansible libusb
     wdisplays firefox
     atool unzip killall wireguard-tools
+    gnome.adwaita-icon-theme 
+    glib
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
