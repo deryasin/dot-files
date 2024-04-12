@@ -5,6 +5,7 @@ in {
   environment.systemPackages = with pkgs; [
     # custom
     #buildtools
+    zsh-syntax-highlighting
     gcc
     gnumake
     appimage-run
