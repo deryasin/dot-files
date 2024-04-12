@@ -30,7 +30,6 @@ in {
     gdu
     bottom
     unstable.rofi-wayland-unwrapped
-    rofi-bluetooth
     waybar
     swaybg
     swaylock-effects
