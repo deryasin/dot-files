@@ -27,3 +27,5 @@ if [[ -n $SSH_CONNECTION ]]; then
 
 alias sranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias vim="nvim"
+
+eval "$(zoxide init zsh)"
