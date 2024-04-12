@@ -5,7 +5,6 @@ in {
   environment.systemPackages = with pkgs; [
     # custom
     #buildtools
-    zsh-syntax-highlighting
     gcc
     gnumake
     appimage-run
@@ -101,6 +100,7 @@ in {
     htop
     zoxide
     fzf
+    inkscape
   ];
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
