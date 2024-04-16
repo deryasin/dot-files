@@ -37,9 +37,9 @@
        specialArgs = { inherit system; };
        modules = [
           ./work/configuration.nix
-	        ./default/modules
           ./work/hardware-configuration.nix
           ./work/modules
+	        ./default/modules
          ];
      };
 

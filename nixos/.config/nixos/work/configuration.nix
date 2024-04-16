@@ -7,6 +7,10 @@
         "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/t14/amd"
 #      <home-manager/nixos>
     ];
+  environment.systemPackages = with pkgs; [
+    pkgs.modemmanager
+    pkgs.modem-manager-gui
+  ];
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
