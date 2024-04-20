@@ -1,6 +1,6 @@
-mkdir -p /home/yasin/.config
-stow --dir /home/yasin/dotfiles --target ~/ wm
-stow --dir /home/yasin/dotfiles/os/nixos --target ~/ home-manager
-stow --dir /home/yasin/dotfiles/ etc
+mkdir -p $HOME/.config
+stow --dir $HOME/dotfiles --target ~/ wm
+stow --dir $HOME/dotfiles/os/nixos --target ~/ home-manager
+stow --dir $HOME/dotfiles/ etc
 nix run home-manager/master -- init --switch
 home-manager switch
