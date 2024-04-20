@@ -18,7 +18,8 @@ return {
 	color_scheme = "Cherryppuccin",
 	-- [[Font config
 	font = font_with_fallback(font_name),
-	font_rules = {
+	audible_bell = "Disabled";
+  font_rules = {
 		{
 			italic = true,
 			font = font_with_fallback(font_name, { italic = true }),
