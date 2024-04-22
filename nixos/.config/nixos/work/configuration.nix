@@ -10,6 +10,7 @@
   environment.systemPackages = with pkgs; [
     pkgs.modemmanager
     pkgs.modem-manager-gui
+    pkgs.ani-cli
   ];
   xdg.portal = {
     enable = true;
