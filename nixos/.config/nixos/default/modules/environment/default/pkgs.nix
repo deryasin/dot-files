@@ -110,6 +110,7 @@ in {
     rpi-imager
     polkit-kde-agent
     remmina
+    fuse3
   ];
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
