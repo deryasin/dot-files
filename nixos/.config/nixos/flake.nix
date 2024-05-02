@@ -8,6 +8,7 @@
 
   outputs = { self, nixpkgs, nixpkgs-wayland, ... }:
   let    
+    unstable = import <nixos-unstable> {config = {allowUnfree = true;};};
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -24,7 +25,7 @@
   {
    nixosConfigurations = {
      home = nixpkgs.lib.nixosSystem {
-       specialArgs = { inherit system; };
+       specialArgs = { inherit system; inherit unstable; };
        modules = [
 	        ./default/modules
           ./home/configuration.nix
@@ -34,7 +35,7 @@
      };
 
      work = nixpkgs.lib.nixosSystem {
-       specialArgs = { inherit system; };
+       specialArgs = { inherit system; inherit unstable; };
        modules = [
           ./work/configuration.nix
           ./work/hardware-configuration.nix

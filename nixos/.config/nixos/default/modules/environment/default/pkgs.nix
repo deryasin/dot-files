@@ -1,7 +1,6 @@
 # environment/default.nix
-{pkgs, ...}: let
-  unstable = import <nixos-unstable> {config = {allowUnfree = true;};};
-in {
+{pkgs, unstable, ...}:
+{
   environment.systemPackages = with pkgs; [
     # custom
     #buildtools
@@ -111,6 +110,7 @@ in {
     polkit-kde-agent
     remmina
     fuse3
+    unstable.nh
   ];
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
