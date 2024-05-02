@@ -1,7 +1,7 @@
 # network.nix
 { config, ...}:
 {
-  networking.hostName = "home";
+  networking.hostName = "work";
   networking.wireless.enable = true;
   networking.wireless.userControlled.enable = true;
 }
