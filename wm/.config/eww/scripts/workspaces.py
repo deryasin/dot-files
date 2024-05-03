@@ -51,7 +51,8 @@ def read_socat_output(command, workspaces):
                                 del workspaces[int(data)] 
                             except:
                                 continue
-                    updateEWW(workspaces) 
+                    updateEWW(workspaces)
+
     except subprocess.CalledProcessError as e:
         print(f"Fehler beim Verbinden oder Lesen von der Socket-Verbindung: {str(e)}")
 
@@ -104,11 +105,12 @@ def getClients(workspace=None):
         class_              =   _client["class"]
         initialTitle        =   _client["initialTitle"]
         initialClass        =   _client["initialClass"]
-        fullscreen          =   _client["fullscreen"]
+        fullscreen          =  True if _client["fullscreen"] or _client["fakeFullscreen"] else False
         if workspace == None:
             clients.append({"address": address, "pid": pid, "workspace_id": workspace_id, "monitorID": monitorID, "title": title, "class": class_, "initialTitle": initialTitle, "initialClass": initialClass, "fullscreen": fullscreen})
         elif workspace == workspace_id:
             clients.append({"address": address, "pid": pid, "workspace_id": workspace_id, "monitorID": monitorID, "title": title, "class": class_, "initialTitle": initialTitle, "initialClass": initialClass, "fullscreen": fullscreen})
+    print(clients)
     return(clients)
 
 def updateEWW(workspaces):
@@ -122,6 +124,7 @@ def updateEWW(workspaces):
             _workspace.refreshClients()
             active          =   _workspace.getActiveState()
             primaryClient   =   _workspace.getPrimaryClient()
+            print(primaryClient)
             match primaryClient:
                 case "org.wezfurlong.wezterm":
                     workspaceIcon  =   icons["terminal"]
@@ -169,9 +172,11 @@ class workspace:
         clientClasses = []
         for _client in self.clients:
             _client = self.clients[_client]
+            print(_client.getFullscreen())
             if _client.getFullscreen() or len(self.clients) == 1:
                 primaryClient = _client
                 self.primaryClient = _client
+                continue
             else:
                 clientClasses.append(_client.getClass())
         if len(set(clientClasses)) == len(clientClasses) and len(clientClasses) > 1 or len(clientClasses) == 0:

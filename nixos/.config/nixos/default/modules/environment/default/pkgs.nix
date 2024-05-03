@@ -1,6 +1,9 @@
 # environment/default.nix
-{pkgs, unstable, ...}:
 {
+  pkgs,
+  unstable,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     # custom
     #buildtools
@@ -111,6 +114,7 @@
     remmina
     fuse3
     unstable.nh
+    pika-backup
   ];
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
