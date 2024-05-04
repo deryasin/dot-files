@@ -115,6 +115,7 @@
     fuse3
     unstable.nh
     pika-backup
+    gimp
   ];
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
