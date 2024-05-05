@@ -53,6 +53,7 @@
     swww
     gnome.adwaita-icon-theme
     eww
+    eww-wayland
     gamescope
     grimblast
     stdenv.cc.cc.lib
@@ -120,7 +121,9 @@
     cool-retro-term
     kitty
     fx-cast-bridge
+    gobject-introspection
   ];
+
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";

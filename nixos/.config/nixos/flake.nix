@@ -15,6 +15,7 @@
       overlays = [
       #nixgl.overlay
       import ./default/overlays/electron.nix
+      import ./default/overlays/nchat.nix
       ];
       config = {
         allowUnfree = true;
