@@ -14,8 +14,8 @@
       inherit system;
       overlays = [
       #nixgl.overlay
-      import ./default/overlays/electron.nix
-      import ./default/overlays/nchat.nix
+        (import ./default/overlays/electron.nix)
+        (import ./default/overlays/eww.nix)
       ];
       config = {
         allowUnfree = true;
@@ -26,7 +26,7 @@
   {
    nixosConfigurations = {
      home = nixpkgs.lib.nixosSystem {
-       specialArgs = { inherit system; inherit unstable; };
+       specialArgs = { inherit system; inherit pkgs; inherit unstable; };
        modules = [
 	        ./default/modules
           ./home/configuration.nix
@@ -36,7 +36,7 @@
      };
 
      work = nixpkgs.lib.nixosSystem {
-       specialArgs = { inherit system; inherit unstable; };
+       specialArgs = { inherit system; inherit pkgs; inherit unstable; };
        modules = [
           ./work/configuration.nix
           ./work/hardware-configuration.nix

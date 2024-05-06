@@ -53,7 +53,6 @@
     swww
     gnome.adwaita-icon-theme
     eww
-    eww-wayland
     gamescope
     grimblast
     stdenv.cc.cc.lib
@@ -122,6 +121,7 @@
     kitty
     fx-cast-bridge
     gobject-introspection
+    inetutils
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
