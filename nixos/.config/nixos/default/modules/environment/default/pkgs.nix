@@ -128,6 +128,7 @@
     wf-recorder
     lutris
     winetricks
+    steam
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
