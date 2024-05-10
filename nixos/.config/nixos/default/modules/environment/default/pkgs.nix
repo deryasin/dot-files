@@ -126,6 +126,8 @@
     gnome.zenity
     gradience
     wf-recorder
+    lutris
+    winetricks
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";

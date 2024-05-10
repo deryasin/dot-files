@@ -23,5 +23,6 @@
 (include "modules/notifications.yuck")
 (include "modules/volume.yuck")
 (include "modules/transparency.yuck")
+(include "modules/recorder_menu.yuck")
 ;; launcher
 (include "modules/launcher.yuck")

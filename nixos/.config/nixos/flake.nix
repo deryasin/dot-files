@@ -16,6 +16,7 @@
       #nixgl.overlay
         (import ./default/overlays/electron.nix)
         (import ./default/overlays/eww.nix)
+        (self: super: { lutris = super.lutris.override { extraLibraries = pkgs: [pkgs.libunwind ]; }; })
       ];
       config = {
         allowUnfree = true;
