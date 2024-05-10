@@ -122,6 +122,7 @@
     fx-cast-bridge
     gobject-introspection
     inetutils
+    bc
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";

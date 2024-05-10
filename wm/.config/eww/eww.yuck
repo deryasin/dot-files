@@ -13,3 +13,12 @@
 ;; bar
 (include "modules/bar.yuck")
 (include "modules/tray.yuck")
+(include "modules/quick_settings.yuck")
+(include "modules/indicator.yuck")
+(include "modules/control_center.yuck")
+
+;; control center 
+(include "modules/music.yuck")
+
+;; launcher
+(include "modules/launcher.yuck")
