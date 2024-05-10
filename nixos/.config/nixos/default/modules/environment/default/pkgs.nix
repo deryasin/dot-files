@@ -123,6 +123,9 @@
     gobject-introspection
     inetutils
     bc
+    gnome.zenity
+    gradience
+    wf-recorder
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";

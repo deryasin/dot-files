@@ -18,7 +18,10 @@
 (include "modules/control_center.yuck")
 
 ;; control center 
+(include "modules/user.yuck")
 (include "modules/music.yuck")
-
+(include "modules/notifications.yuck")
+(include "modules/volume.yuck")
+(include "modules/transparency.yuck")
 ;; launcher
 (include "modules/launcher.yuck")
