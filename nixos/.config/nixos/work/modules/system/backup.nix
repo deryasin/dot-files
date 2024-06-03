@@ -1,4 +1,4 @@
-{ config, ...}:
+{ config, pkgs, ...}:
 {
   services.borgbackup.jobs.full = {
     paths = [ 
@@ -16,6 +16,7 @@
     };
     compression = "auto,lzma";
   };
+  
 systemd.timers."borgbackup-job-full" = {
     wantedBy = [ "timers.target"];
     timerConfig= {
@@ -23,5 +24,24 @@ systemd.timers."borgbackup-job-full" = {
       OnUnitActiveSec = "1h";
       Unit = "borgbackup-job-full.service";
       };
-    };
+};
+
+systemd.services."borgbackup-sync" = {
+  path = [pkgs.bash pkgs.toybox pkgs.rsync];
+  serviceConfig = {
+     #ExecStart = "${pkgs.bash}/bin/bash /home/yasin/sync_borg_repo.sh";
+    ExecStart = "/home/yasin/sync_borg_repo.sh";
+    Type = "oneshot";
+    User = "root";
+  };
+};
+systemd.timers."borgbackup-sync" = {
+    wantedBy = [ "timers.target"];
+    timerConfig = {
+        OnBootSec = "30m";
+        OnUnitActiveSec = "1h";
+        Unit = "borgbackup-sync.service";
+      };
+ };
+
 }
