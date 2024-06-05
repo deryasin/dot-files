@@ -130,7 +130,7 @@
     winetricks
     steam
     bitwarden
-    minecraft
+    prismlauncher-unwrapped
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
