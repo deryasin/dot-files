@@ -131,6 +131,7 @@
     steam
     bitwarden
     minecraft
+    pulseaudio
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
