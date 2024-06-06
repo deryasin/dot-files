@@ -132,6 +132,9 @@
     bitwarden
     minecraft
     pulseaudio
+    prismlauncher-unwrapped
+    xclip
+    xdotool
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
