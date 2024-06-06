@@ -135,6 +135,7 @@
     prismlauncher-unwrapped
     xclip
     xdotool
+    ydotool
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
