@@ -137,6 +137,7 @@
     xdotool
     ydotool
     isoimagewriter
+    chromium
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
