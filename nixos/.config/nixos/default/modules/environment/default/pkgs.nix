@@ -138,6 +138,7 @@
     ydotool
     isoimagewriter
     chromium
+    speedtest-cli
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
