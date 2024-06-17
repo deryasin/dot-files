@@ -139,7 +139,7 @@
     isoimagewriter
     chromium
     speedtest-cli
-    virt-manager
+    sox
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
