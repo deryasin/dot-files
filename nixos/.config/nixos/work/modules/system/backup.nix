@@ -14,6 +14,13 @@
       mode = "repokey";
       passCommand = "cat /root/.borg-passphrase";
     };
+    prune = {
+      keep = {
+        hourly = 24;
+        daily = 7;
+        weekly = 4;
+      };
+    };
     compression = "auto,lzma";
   };
   

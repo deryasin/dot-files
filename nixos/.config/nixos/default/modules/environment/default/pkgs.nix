@@ -23,6 +23,7 @@
     stow
     home-manager
     networkmanager
+    networkmanager-openvpn
     pipewire
     wireplumber
     pavucontrol
@@ -140,6 +141,8 @@
     chromium
     speedtest-cli
     sox
+    docker
+    librecad
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
