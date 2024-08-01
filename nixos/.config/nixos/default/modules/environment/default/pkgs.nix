@@ -143,6 +143,7 @@
     sox
     docker
     librecad
+    wireshark
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
