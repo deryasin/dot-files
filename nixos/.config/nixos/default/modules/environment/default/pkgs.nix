@@ -145,7 +145,7 @@
     librecad
     wireshark
     arduino-ide
-    avidemux
+    kdenlive
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
