@@ -9,7 +9,7 @@
     enable = true;
     wlr.enable = true;
   };
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
   programs.streamdeck-ui = {
     enable = true;
     autoStart = true; # optional

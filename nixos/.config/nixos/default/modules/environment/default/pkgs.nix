@@ -146,6 +146,7 @@
     wireshark
     arduino-ide
     kdenlive
+    minicom
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
