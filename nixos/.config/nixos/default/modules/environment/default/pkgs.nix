@@ -148,6 +148,7 @@
     kdenlive
     minicom
     gparted
+    xorg.xhost
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
