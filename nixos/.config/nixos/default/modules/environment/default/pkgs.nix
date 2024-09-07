@@ -149,6 +149,7 @@
     minicom
     gparted
     xorg.xhost
+    lxqt.lxqt-policykit
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
