@@ -151,6 +151,7 @@
     xorg.xhost
     lxqt.lxqt-policykit
     blobby
+    tmux
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
