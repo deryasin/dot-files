@@ -143,7 +143,6 @@
     sox
     docker
     librecad
-    wireshark
     arduino-ide
     kdenlive
     minicom
@@ -152,6 +151,7 @@
     lxqt.lxqt-policykit
     blobby
     tmux
+    postman
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
