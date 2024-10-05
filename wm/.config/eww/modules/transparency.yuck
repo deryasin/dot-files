@@ -1,0 +1,22 @@
+
+(defwidget transparency [] 
+    (revealer :transition "slideup" :reveal {open_osd} :duration {ANIM_DURATION}
+        (box :orientation "h" :class "transparency-osd" :space-evenly false 
+            (transparency_scale)
+           
+        )
+    )
+)
+(defwidget transparency-control-center [] 
+    (box :orientation "h" :class "transparency-control-center" :space-evenly false
+        (transparency_scale)
+        (button :class "transparency-arrow" :onclick "scripts/transparency.sh 30 " "-")
+    )
+)
+
+(defwidget transparency_scale [] 
+    (overlay :hexpand true 
+        (scale :min 0 :max 30 :active true :onchange "scripts/transparency.sh {}" :class "transparency-scale")
+        (label :class 'transparency_icon' :halign "start" :text transparency)
+    )
+)

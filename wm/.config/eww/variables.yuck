@@ -1,0 +1,49 @@
+; VARS
+
+(defvar open_control_center false)
+(defvar open_osd false)
+(defvar open_launcher false)
+(defvar open_tray false)
+(defvar clipboard "[]")
+(defvar ANIM_DURATION "500ms")
+
+(defvar recorder_audio false)
+(defvar recorder_region false)
+
+; POLLS
+
+(defpoll recording :interval "1s"
+"pgrep 'wf-recorder' || echo false")
+
+; LISTENS
+
+(deflisten weather :initial "null"
+"scripts/weather.py")
+
+(deflisten workspaces :initial "[{'window'}]"
+"scripts/workspaces.sh")
+
+(deflisten network :initial '{"essid": "lo", "signal": ""}'
+"scripts/network.sh")
+
+(deflisten breathing :inital ""
+"scripts/breathing.sh")
+(deflisten apps :initial "{}"
+"scripts/apps.py")
+
+
+;; control center
+
+(deflisten notifications :initial '{"count": 0, "notifications": [], "popups": []}'
+"scripts/notifications.sh current")
+
+(deflisten mpris_positions :initial "{}"
+"scripts/positions.sh")
+
+(deflisten mpris :initial "{}"
+"scripts/mpris.sh")
+
+(deflisten volume :initial "0"
+"scripts/volume.sh")
+
+(defvar transparency 10)
