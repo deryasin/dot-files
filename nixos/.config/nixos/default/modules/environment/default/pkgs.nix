@@ -105,6 +105,10 @@
     fzf
     inkscape
     ncdu
+    ani-cli
+    mpv
+    kitty
+    libsixel
     trash-cli
     borgbackup
     libsecret
@@ -153,6 +157,7 @@
     tmux
     postman
     teamviewer
+    youtube-music
   ];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";

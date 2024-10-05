@@ -26,15 +26,15 @@
   in
   {
    nixosConfigurations = {
-     #home = nixpkgs.lib.nixosSystem {
-     #  specialArgs = { inherit system; inherit pkgs; inherit unstable; };
-     #  modules = [
-	   #     ./default/modules
-     #     ./home/configuration.nix
-     #     ./home/hardware-configuration.nix
-     #     ./home/modules
-     #    ];
-     #};
+     home = nixpkgs.lib.nixosSystem {
+       specialArgs = { inherit system; inherit pkgs; inherit unstable; };
+       modules = [
+	        ./default/modules
+          ./home/configuration.nix
+          ./home/hardware-configuration.nix
+          ./home/modules
+         ];
+     };
 
      work = nixpkgs.lib.nixosSystem {
        specialArgs = { inherit system; inherit pkgs; inherit unstable; };
@@ -58,3 +58,4 @@
    };
   };
 }
+
