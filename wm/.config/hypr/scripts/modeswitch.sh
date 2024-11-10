@@ -5,27 +5,27 @@ CFGDIR="$HOME/.config"
 X_MODE=$1
 
 ## check mode ##
-if [ "$X_MODE" == "dark" ] || [ "$X_MODE" == "light" ] ; then
-    S_MODE="$X_MODE"
+if [ "$X_MODE" == "dark" ] || [ "$X_MODE" == "light" ]; then
+	S_MODE="$X_MODE"
 
-elif [ "$X_MODE" == "switch" ] ; then
-    X_MODE=`readlink $CFGDIR/swww/wall.set | awk -F "." '{print $NF}'`
+elif [ "$X_MODE" == "switch" ]; then
+	X_MODE=$(readlink $CFGDIR/swww/wall.set | awk -F "." '{print $NF}')
 
-    if [ "$X_MODE" == "dark" ] ; then
-        S_MODE="light"
-        flatpak --user override --env=GTK_THEME=Catppuccin-Latte
+	if [ "$X_MODE" == "dark" ]; then
+		S_MODE="light"
+		flatpak --user override --env=GTK_THEME=Catppuccin-Latte
 
-    elif [ "$X_MODE" == "light" ] ; then
-        S_MODE="dark"
-        flatpak --user override --env=GTK_THEME=Catppuccin-Mocha
+	elif [ "$X_MODE" == "light" ]; then
+		S_MODE="dark"
+		flatpak --user override --env=GTK_THEME=Catppuccin-Mocha
 
-    else
-        echo "ERROR: unable to fetch wallpaper mode."
-    fi
+	else
+		echo "ERROR: unable to fetch wallpaper mode."
+	fi
 
 else
-    echo "ERROR: unknown mode, use 'dark', 'light' or 'switch'."
-    exit 1
+	echo "ERROR: unknown mode, use 'dark', 'light' or 'switch'."
+	exit 1
 fi
 
 ### hyprland ###
@@ -33,7 +33,7 @@ ln -fs $CFGDIR/hypr/${S_MODE}.conf $CFGDIR/hypr/theme.conf
 hyprctl reload
 
 ### swwwallpaper ###
-x=`echo $S_MODE | cut -c 1`
+x=$(echo $S_MODE | cut -c 1)
 $CFGDIR/swww/swwwallpaper.sh -$x
 
 ### qt5ct ###
@@ -49,4 +49,8 @@ killall -SIGUSR1 kitty
 ### waybar ###
 ln -fs $CFGDIR/waybar/${S_MODE}.css $CFGDIR/waybar/style.css
 sleep 1
-killall -SIGUSR2 waybar
+#killall -SIGUSR2 waybar
+for proc in $(pgrep waybar); do
+	kill $proc
+done
+waybar

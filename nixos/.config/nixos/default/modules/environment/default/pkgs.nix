@@ -32,7 +32,7 @@
     lazygit
     gdu
     bottom
-    unstable.rofi-wayland-unwrapped
+    unstable.rofi-wayland
     waybar
     swaybg
     swaylock-effects
@@ -50,7 +50,6 @@
     openvpn
     xdg-desktop-portal
     xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
     swww
     gnome.adwaita-icon-theme
     eww
@@ -58,7 +57,19 @@
     grimblast
     stdenv.cc.cc.lib
     python3
-    gtk3
+    gtk2 gtk3 gtk4 tela-circle-icon-theme
+    transmission_4-gtk
+    gthumb
+    cmatrix
+    lavat
+    lolcat
+    cava
+    helix
+    krabby
+    zellij
+    shellcheck
+    obs-studio
+    lm_sensors
     gobject-introspection
     libnotify
     playerctl
@@ -158,7 +169,42 @@
     postman
     teamviewer
     youtube-music
-  ];
+    qt5.full
+    qt6.full
+    nix-index
+    kdePackages.wayland kdePackages.qtwayland kdePackages.qtsvg
+    kdePackages.kio-fuse kdePackages.kio-extras kdePackages.kde-cli-tools
+    libsForQt5.qt5.qtquickcontrols libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects libsForQt5.qt5ct
+    libsForQt5.qtstyleplugin-kvantum kdePackages.qtstyleplugin-kvantum
+    kdePackages.qt6ct
+    alacritty swaynotificationcenter
+    wlogout
+    parallel
+    udiskie
+    polkit_gnome
+    libinput-gestures
+    cliphist alacritty
+    gtklock
+    where-is-my-sddm-theme brave
+    blueman
+    lsd parallel unstable.pwvucontrol
+    swappy polkit_gnome libinput-gestures
+    kdePackages.qtimageformats
+    kdePackages.ffmpegthumbs libnotify
+    nwg-look ark
+    dolphin kitty eza zsh-powerlevel10k
+    envsubst hyprcursor
+    gnumake tree
+    papirus-icon-theme
+    mission-center
+    thefuck
+    starship
+    brave
+    gsettings-qt
+    qtcreator
+    libsForQt5.qt5.qtwayland qt5ct
+];
 
   environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

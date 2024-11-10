@@ -13,4 +13,12 @@
     dina-font
     proggyfonts
   ];
+  fonts.fontDir.enable = true;
+    fonts.packages = with pkgs; [
+      noto-fonts noto-fonts-emoji noto-fonts-cjk
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      noto-fonts-color-emoji material-icons
+      font-awesome atkinson-hyperlegible
+    ];
+
 }

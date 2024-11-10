@@ -1,5 +1,5 @@
 # configuration.nix
-{ system, config, pkgs, lib, ... }:
+{ predefinedVariables, config, pkgs, lib, unstable, ... }:
 {
   imports =
     [
@@ -10,9 +10,9 @@
   ];
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     wlr.enable = true;
   };
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  system.stateVersion = "23.05";
+  system.stateVersion = predefinedVariables.stateVersion;
 }

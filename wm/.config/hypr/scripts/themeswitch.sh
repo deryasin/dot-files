@@ -1,114 +1,121 @@
 #!/usr/bin/env sh
 
-## set variables ##
-BaseDir=`dirname $(realpath $0)`
-ConfDir="$HOME/.config"
-ThemeCtl="$ConfDir/swww/wall.ctl"
 
-## evaluate options ##
-while getopts "npst" option ; do
+#// set variables
+
+scrDir="$(dirname "$(realpath "$0")")"
+source "${scrDir}/globalcontrol.sh"
+[ -z "${hydeTheme}" ] && echo "ERROR: unable to detect theme" && exit 1
+get_themes
+
+
+#// define functions
+
+Theme_Change()
+{
+    local x_switch=$1
+    for i in ${!thmList[@]} ; do
+        if [ "${thmList[i]}" == "${hydeTheme}" ] ; then
+            if [ "${x_switch}" == 'n' ] ; then
+                setIndex=$(( (i + 1) % ${#thmList[@]} ))
+            elif [ "${x_switch}" == 'p' ] ; then
+                setIndex=$(( i - 1 ))
+            fi
+            themeSet="${thmList[setIndex]}"
+            break
+        fi
+    done
+}
+
+
+#// evaluate options
+
+while getopts "nps:" option ; do
     case $option in
 
     n ) # set next theme
-        ThemeSet=`head -1 $ThemeCtl | cut -d '|' -f 2` #default value
-        flg=0
-        while read line
-        do
-            if [ $flg -eq 1 ] ; then
-                ThemeSet=`echo $line | cut -d '|' -f 2`
-                break
-            elif [ `echo $line | cut -d '|' -f 1` -eq 1 ] ; then
-                flg=1
-            fi
-        done < $ThemeCtl
-        ;;
+        Theme_Change n
+        export xtrans="grow" ;;
 
     p ) # set previous theme
-        ThemeSet=`tail -1 $ThemeCtl | cut -d '|' -f 2` #default value
-        flg=0
-        while read line
-        do
-            if [ $flg -eq 1 ] ; then
-                ThemeSet=`echo $line | cut -d '|' -f 2`
-                break
-            elif [ `echo $line | cut -d '|' -f 1` -eq 1 ] ; then
-                flg=1
-            fi
-        done < <( tac $ThemeCtl )
-        export xtrans="outer"
-        ;;
+        Theme_Change p
+        export xtrans="outer" ;;
 
     s ) # set selected theme
-        shift $((OPTIND -1))
-        ThemeSet=$1
-        ;;
-
-    t ) # display tooltip
-        echo ""
-        echo "󰆊 Next/Previous Theme"
-        exit 0 ;;
+        themeSet="$OPTARG" ;;
 
     * ) # invalid option
+        echo "... invalid option ..."
+        echo "$(basename "${0}") -[option]"
         echo "n : set next theme"
         echo "p : set previous theme"
-        echo "s : set theme from parameter"
-        echo "t : display tooltip"
+        echo "s : set input theme"
         exit 1 ;;
     esac
 done
 
-## update theme control ##
-if [ `cat $ThemeCtl | awk -F '|' -v thm=$ThemeSet '{if($2==thm) print$2}' | wc -w` -ne 1 ] ; then
-    echo "Unknown theme selected: $ThemeSet"
-    echo "Available themes are:"
-    cat $ThemeCtl | cut -d '|' -f 2
-    exit 1
+
+#// update control file
+
+if ! $(echo "${thmList[@]}" | grep -wq "${themeSet}") ; then
+    themeSet="${hydeTheme}"
+fi
+
+set_conf "hydeTheme" "${themeSet}"
+echo ":: applying theme :: \"${themeSet}\""
+export reload_flag=1
+source "${scrDir}/globalcontrol.sh"
+
+
+#// hypr
+
+sed '1d' "${hydeThemeDir}/hypr.theme" > "${confDir}/hypr/themes/theme.conf"
+gtkTheme="$(
+{ grep -q "^[[:space:]]*\$GTK[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$GTK[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} || 
+grep 'gsettings set org.gnome.desktop.interface gtk-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}'
+)"
+
+gtkIcon="$(
+{ grep -q "^[[:space:]]*\$ICON[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$ICON[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} ||  
+grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $(NF - 1)}'
+)"
+
+#// qtct
+
+sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${confDir}/qt5ct/qt5ct.conf"
+sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${confDir}/qt6ct/qt6ct.conf"
+sed -i "/^Theme=/c\Theme=${gtkIcon}" "${confDir}/kdeglobals"
+
+#// gtk3
+
+sed -i "/^gtk-theme-name=/c\gtk-theme-name=${gtkTheme}" $confDir/gtk-3.0/settings.ini
+sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${gtkIcon}" $confDir/gtk-3.0/settings.ini
+
+
+#// gtk4
+
+if [ -d /run/current-system/sw/share/themes ] ; then
+    themeDir=/run/current-system/sw/share/themes
 else
-    echo "Selected theme: $ThemeSet"
-    sed -i "s/^1/0/g" $ThemeCtl
-    awk -F '|' -v thm=$ThemeSet '{OFS=FS} {if($2==thm) $1=1; print$0}' $ThemeCtl > $BaseDir/tmp && mv $BaseDir/tmp $ThemeCtl
+    themeDir=~/.themes
+fi
+rm -rf "${confDir}/gtk-4.0"
+ln -s "${themeDir}/${gtkTheme}/gtk-4.0" "${confDir}/gtk-4.0"
+
+
+#// flatpak GTK
+
+if pkg_installed flatpak ; then
+    if [ "${enableWallDcol}" -eq 0 ] ; then
+        flatpak --user override --env=GTK_THEME="${gtkTheme}"
+        flatpak --user override --env=ICON_THEME="${gtkIcon}"
+    else
+        flatpak --user override --env=GTK_THEME="Wallbash-Gtk"
+        flatpak --user override --env=ICON_THEME="${gtkIcon}"
+    fi
 fi
 
+#// wallpaper
 
-### swwwallpaper ###
-getWall=`grep '^1|' $ThemeCtl | cut -d '|' -f 3`
-getWall=`eval echo $getWall`
-ln -fs $getWall $ConfDir/swww/wall.set
-$ConfDir/swww/swwwallpaper.sh
-
-if [ $? -ne 0 ] ; then
-    echo "ERROR: Unable to set wallpaper"
-    exit 1
-fi
-
-
-### kitty ###
-ln -fs $ConfDir/kitty/themes/${ThemeSet}.conf $ConfDir/kitty/themes/theme.conf
-killall -SIGUSR1 kitty
-
-
-### qt5ct ###
-sed -i "/^color_scheme_path=/c\color_scheme_path=$ConfDir/qt5ct/colors/${ThemeSet}.conf" $ConfDir/qt5ct/qt5ct.conf
-IconSet=`awk -F "'" '$0 ~ /gsettings set org.gnome.desktop.interface icon-theme/{print $2}' $ConfDir/hypr/themes/${ThemeSet}.conf`
-sed -i "/^icon_theme=/c\icon_theme=${IconSet}" $ConfDir/qt5ct/qt5ct.conf
-
-
-### flatpak GTK ###
-flatpak --user override --env=GTK_THEME="${ThemeSet}"
-flatpak --user override --env=ICON_THEME="${IconSet}"
-
-
-### rofi ###
-ln -fs $ConfDir/rofi/themes/${ThemeSet}.rasi $ConfDir/rofi/themes/theme.rasi
-
-
-### hyprland ###
-ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
-hyprctl reload
-
-
-### waybar ###
-ln -fs $ConfDir/waybar/themes/${ThemeSet}.css $ConfDir/waybar/style.css
-sleep 1
-killall -SIGUSR2 waybar
+"${scrDir}/swwwallpaper.sh" -s "$(readlink "${hydeThemeDir}/wall.set")"
 

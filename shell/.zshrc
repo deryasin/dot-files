@@ -3,13 +3,11 @@ export PATH=$PATH:~/.config/nvim/bin/
 export PATH=$PATH:~/.local/bin/
 export GTK_THEME=Adwaita:dark
 export EDITOR=vim
-
+eval $(thefuck --alias)
 if [[ "$(hostname)" == "home" ]]; then
     ZSH_THEME="home-default"
 elif [[ "$(hostname)" == "work" ]]; then
     ZSH_THEME="work-default"
-elif [[ "$(hostname)" == "mobile" ]]; then 
-    ZSH_THEME="mobile-default"
 else
     ZSH_THEME="home-default"
 fi
@@ -37,8 +35,41 @@ if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='nvim'
  fi
 
+
 alias sranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias rm="trash --verbose"
 alias vim="nvim"
-
+ 
 eval "$(zoxide init --cmd cd zsh)"
+
+function command_not_found_handler {
+    local purple='\e[1;35m' bright='\e[0;1m' green='\e[1;32m' reset='\e[0m'
+    printf 'zsh: command not found: %s\n' "$1"
+    
+    # Notify user of async search
+    printf "Searching for package that provides ${bright}$1${reset}...\n"
+
+    # Run nix-locate asynchronously and process results when done
+    {
+        local results=$(nix-locate -w -r "^.*/bin/$1$" 2>/dev/null)
+        
+        if [[ -n "$results" ]]; then
+            printf "${bright}$1${reset} may be found in the following packages:\n"
+            
+            # Process and display each result
+            while IFS= read -r line; do
+                local pkg_name=$(echo "$line" | cut -d' ' -f1)
+                local bin_path=$(echo "$line" | cut -d' ' -f2-)
+                printf "${purple}%s ${green}%s${reset}\n" "$pkg_name" "$bin_path"
+            done <<< "$results"
+        else
+            printf "No package found for command: ${bright}$1${reset}\n"
+        fi
+    } &
+
+    return 127
+}
+
+
+# Display Pokemon
+pokemon-colorscripts --no-title -r 1,3,6

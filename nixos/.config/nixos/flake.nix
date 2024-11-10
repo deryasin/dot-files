@@ -3,17 +3,19 @@
   inputs = {
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    hyprwm-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 };
 
-  #outputs = { self, nixpkgs, nixpkgs-wayland, ... }:
-  outputs = { self, nixpkgs, ... }:
-  let    
+  outputs = inputs @ { self, nixpkgs, zen-browser, ... }:
+  let
+    predefinedVariables = (import ./variables.nix);
     unstable = import <nixos-unstable> {config = {allowUnfree = true;};};
-    system = "x86_64-linux";
     pkgs = import nixpkgs {
-      inherit system;
       overlays = [
-      #nixgl.overlay
         (import ./default/overlays/electron.nix)
         (import ./default/overlays/eww.nix)
         (self: super: { lutris = super.lutris.override { extraLibraries = pkgs: [pkgs.libunwind ]; }; })
@@ -24,11 +26,14 @@
       };
     };
   in
+  
+
   {
    nixosConfigurations = {
-     home = nixpkgs.lib.nixosSystem {
-       specialArgs = { inherit system; inherit pkgs; inherit unstable; };
+     home = nixpkgs.lib.nixosSystem rec { # https://nix.dev/manual/nix/2.17/language/constructs
+       specialArgs = { inherit predefinedVariables; inherit pkgs; inherit unstable; };
        modules = [
+          ./default/pkgs
 	        ./default/modules
           ./home/configuration.nix
           ./home/hardware-configuration.nix
@@ -37,7 +42,7 @@
      };
 
      work = nixpkgs.lib.nixosSystem {
-       specialArgs = { inherit system; inherit pkgs; inherit unstable; };
+       specialArgs = { inherit predefinedVariables; inherit pkgs; inherit unstable; };
        modules = [
           ./work/configuration.nix
           ./work/hardware-configuration.nix
@@ -45,16 +50,6 @@
 	        ./default/modules
          ];
      };
-
-     #mobile = nixpkgs.lib.nixosSystem {
-      # specialArgs = { inherit system; };
-      # modules = [
-	    #    ./default/modules
-      #    ./mobile/configuration.nix
-	    #    ./mobile/hardware-configuration.nix
-	    #    ./mobile/modules
-      #  ];
-     #};
    };
   };
 }
